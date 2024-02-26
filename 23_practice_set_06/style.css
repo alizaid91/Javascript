@@ -1,0 +1,17 @@
+html,body{
+    margin:0px
+}
+nav {
+    width: 100%;
+    background-color: salmon;
+    padding:  15px;
+    display: flex;
+    justify-content: center;
+    gap:2em;
+}
+
+span {
+    font-size : 1.1em;
+    padding: 5px;
+    border-radius: 5px;
+}

@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+html,body{
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    font-family: 'Ubuntu', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: salmon;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:400px;
+    height: 200px;
+    background-color : crimson;
+    box-shadow: 6px 6px;
+    border-radius: 15px;
+}
+
+.content{
+    text-align: center;
+    padding: 30px;
+    line-height: 2em;
+}
+
+#joke {
+    font-size: 1.5em;
+    color:white;
+}
+
+button {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 600;
+    font-size: 1.2em;
+    margin-top: 20px;
+    padding: 13px;
+    border-radius: 60px;
+    background-color: rgb(80, 212, 212);
+}
