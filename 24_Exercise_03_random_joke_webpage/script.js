@@ -77,8 +77,14 @@ let jokes = [
     "Why did the developer go broke? Because he used up all his cache."
     ]
 
-function generateRandomNumber() {
-      x = Math.floor(Math.random() * 30);
-      a = jokes[x];
-      document.getElementById("joke").textContent = a;
+// function generateRandomNumber() {
+//       x = Math.floor(Math.random() * (jokes.length));
+//       a = jokes[x];
+//       document.getElementById("joke").textContent = a;
+// }
+
+generateRandomNumber = () =>{
+    x = Math.floor(Math.random() * (jokes.length));
+    a = jokes[x];
+    document.getElementById("joke").textContent = a;
 }
