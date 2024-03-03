@@ -31,7 +31,7 @@ boxes.forEach((box) => {
       turnO = false;
     } else {
       box.innerHTML = "X";
-      box.style.color = "whit"
+      box.style.color = "white"
       turnO = true;
     }
     box.disabled = true;
