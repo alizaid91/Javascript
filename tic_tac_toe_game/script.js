@@ -65,7 +65,7 @@ const drawCase = () => {
 
 const checkWinner = () => {
   let winnerFound = false;
-  let emptyBoxes = 0
+  let emptyBoxes = 0;
   for (let patterns of winPatterns) {
     let pos1Val = boxes[patterns[0]].innerText;
     let pos2Val = boxes[patterns[1]].innerText;
@@ -74,17 +74,17 @@ const checkWinner = () => {
     if (pos1Val != "" && pos2Val != "" && pos3Val != "") {
       if (pos1Val === pos2Val && pos2Val == pos3Val) {
         showWinner(pos1Val);
-        winnerFound = true
-        break
+        winnerFound = true;
+        break;
       }
     }
-    if(pos1Val === "" || pos2Val === "" || pos3Val === ""){
-      emptyBoxes++
+    if (pos1Val === "" || pos2Val === "" || pos3Val === "") {
+      emptyBoxes++;
     }
   }
 
-  if(!winnerFound && emptyBoxes === 0){
-    drawCase()
+  if (!winnerFound && emptyBoxes === 0) {
+    drawCase();
   }
 };
 
