@@ -1,16 +1,18 @@
 let boxes = document.querySelectorAll(".box");
 let resetBtn = document.querySelector("#reset-btn");
-let newGameBtn = document.querySelector("#new-game-btn");
 let msgContainer = document.querySelector(".msg-container");
+let win = document.querySelector("#win");
 let msg = document.querySelector("#msg");
 
 let scoreO = document.querySelector("#oscore");
 let scoreX = document.querySelector("#xscore");
-let noDraws = document.querySelector("#draws");
 
 let winsO = 0;
 let winsX = 0;
 let draws = 0;
+
+let turnO = true;
+let initialTurnO = true;
 
 let winPatterns = [
   [0, 1, 2],
@@ -22,60 +24,38 @@ let winPatterns = [
   [3, 4, 5],
   [6, 7, 8],
 ];
+
 const resetGame = () => {
-  turnX = true;
   setTimeout(function () {
     msgContainer.classList.add("hide");
   }, 300);
   msgContainer.classList.remove("show");
   enableBoxes();
-};
+  // Switch the starting player for the next game
+  initialTurnO = !initialTurnO;
+  turnO = initialTurnO;
 
-let turnO = true;
-let turnX = false;
-
-boxes.forEach((box) => {
-  box.addEventListener("click", () => {
-    if (turnO) {
-      box.innerHTML = "O";
-      box.style.color = "crimson";
-      turnO = false;
-      turnX = true;
-    } else if (turnX) {
-      box.innerHTML = "X";
-      box.style.color = "white";
-      turnO = true;
-      turnX = false;
-    }
-    box.disabled = true;
-
-    checkWinner();
-  });
-});
-
-const disableBoxes = () => {
-  for (let box of boxes) {
-    box.disabled = true;
-  }
-};
-
-const enableBoxes = () => {
-  for (let box of boxes) {
-    box.disabled = false;
-    box.innerText = "";
+  // Update initial styling based on the starting player
+  if (turnO) {
+    scoreO.style.borderBottom = "5px solid red";
+    scoreX.style.borderBottom = "";
+  } else {
+    scoreX.style.borderBottom = "5px solid red";
+    scoreO.style.borderBottom = "";
   }
 };
 
 const showWinner = (winner) => {
   if (winner == "O") {
     winsO += 1;
-    scoreO.innerHTML = `O : ${winsO}`;
+    scoreO.innerHTML = `O : &nbsp;&nbsp;&nbsp ${winsO}`;
   } else if (winner == "X") {
     winsX += 1;
-    scoreX.innerHTML = `X : ${winsX}`;
+    scoreX.innerHTML = `X : &nbsp;&nbsp;&nbsp ${winsX}`;
   }
 
-  msg.innerText = `Winner is ${winner}`;
+  win.innerText = `${winner}`;
+  msg.innerText = `Winner!`;
 
   msgContainer.classList.remove("hide");
   setTimeout(function () {
@@ -86,9 +66,8 @@ const showWinner = (winner) => {
 
 const drawCase = () => {
   draws += 1;
+  win.innerText = `XO`;
   msg.innerText = `Draw!`;
-
-  noDraws.innerHTML = `Draws : ${draws}`;
 
   msgContainer.classList.remove("hide");
   setTimeout(function () {
@@ -122,5 +101,42 @@ const checkWinner = () => {
   }
 };
 
-newGameBtn.addEventListener("click", resetGame);
+const disableBoxes = () => {
+  for (let box of boxes) {
+    box.disabled = true;
+  }
+};
+
+const enableBoxes = () => {
+  for (let box of boxes) {
+    box.disabled = false;
+    box.innerText = "";
+  }
+};
+
 resetBtn.addEventListener("click", resetGame);
+
+if (turnO) {
+  scoreO.style.borderBottom = "5px solid red";
+}
+
+boxes.forEach((box) => {
+  box.addEventListener("click", () => {
+    if (turnO) {
+      box.innerHTML = "O";
+      box.style.color = "#e5e5e5";
+      scoreX.style.borderBottom = "5px solid red";
+      scoreO.style.borderBottom = "";
+      turnO = false;
+    } else {
+      box.innerHTML = "X";
+      box.style.color = "#fde68a";
+      scoreO.style.borderBottom = "5px solid red";
+      scoreX.style.borderBottom = "";
+      turnO = true;
+    }
+    box.disabled = true;
+
+    checkWinner();
+  });
+});
